@@ -25,6 +25,20 @@ header h1 {
     text-transform: uppercase;
 }
 
+header h2 {
+    margin-top: 8px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    margin: 12px 5% 0;
+}
+
+#score {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+}
+
+
 .options {
     height: 50px;
     display: flex;
