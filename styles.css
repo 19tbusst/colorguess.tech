@@ -1,0 +1,97 @@
+* {
+    margin: 0;
+}
+
+header {
+    background-color: #0C3B40;
+    color: #2b777e;
+    display: flex;
+    height: 50px;
+}
+
+header div {
+    width: 100%;
+}
+
+header img {
+    margin-top: 5px;
+    height: 40px;
+    float: right;
+}
+
+header h1 {
+    margin-top: 8px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+}
+
+.options {
+    height: 50px;
+    display: flex;
+    width: 100%;
+    display: flex;
+}
+
+.options button  {
+    background-color: #112226;
+    display: inline-block;
+    color: #2b777e;
+    font-family: sans-serif;
+    font-size: 25px;
+    padding: 11px 10px;
+    border: none;
+}
+
+.color-type {
+    margin: 0 auto;
+    display: flex;
+}
+
+.dificulty-type {
+    margin: 0 auto;
+    display: flex;
+}
+
+#rgb {
+    background-color: #0C3B40;
+}
+
+#easy {
+    background-color: #0C3B40;
+}
+
+body {
+    background-color: #112226;
+}
+
+#guess {
+    background-color: #73363B;
+    height: 100px;
+    padding-top: 15px;
+}
+
+#guess h2 {
+    color:#F25E6B;
+    font-family: sans-serif;
+    font-size: 70px;
+    text-align: center;
+}
+
+#panels, #panels-hard {
+    margin-top: 30px;
+    justify-content: center;
+    display: flex;
+}
+
+#panels-hard {
+    display: none;
+}
+
+#panels button, #panels-hard button {
+    background-color: #A9BF5A;
+    width: 300px;
+    height: 300px;
+    margin: 0 15px;
+    border: none;
+    border-radius: 60px;
+}

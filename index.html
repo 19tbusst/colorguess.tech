@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>color.tech</title>
+    <link rel="icon" href="./png/placeholder.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div>
+            <h1>color.tech</h1>
+        </div>
+        
+        <a href="github.com" id="github">
+            <img src="png/placeholder.png" alt="github logo">
+        </a>
+    </header>
+    <main>
+        <div class="options">
+            <div class="color-type">
+                <button id="rgb">RGB</button>
+                <button id="hex">HEX</button>
+            </div>
+            <div class="dificulty-type">
+                <button id="easy">EASY</button>
+                <button id="hard">HARD</button>
+            </div>
+        </div>
+        <div id="guess">
+            <h2>RGB(32, 89, 43)</h2>
+        </div>
+        <div id="panels">
+            <button onclick="guess(0)"></button>
+            <button onclick="guess(1)"></button>
+            <button onclick="guess(2)"></button>
+        </div>
+        <div id="panels-hard">
+            <button onclick="guess(3)"></button>
+            <button onclick="guess(4)"></button>
+            <button onclick="guess(5)"></button>
+        </div>
+    </main>
+    <script src="./app.js"></script>
+</body>
+</html>
