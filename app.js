@@ -20,18 +20,45 @@ let correct = 0;
 let incorrect = 0;
 
 easy.addEventListener("click", () => {
-    on(easy, hard);
-    panelsHard.style.display = "none";
-    isEasy = true; color();
+    if (!isEasy) {
+        scoreReset();
+        on(easy, hard);
+        panelsHard.style.display = "none";
+        color();
+        isEasy = true;
+    };
 });
 hard.addEventListener("click", () => {
-    on(hard, easy);
-    panelsHard.style.display = "flex";
-    isEasy = false;
-    color()
+    if (isEasy) {
+        scoreReset();
+        on(hard, easy);
+        panelsHard.style.display = "flex";
+        color();
+        isEasy = false;
+    };
+    
 });
-hex.addEventListener("click", () => { on(hex, rgb); isRGB = false; color()});
-rgb.addEventListener("click", () => { on(rgb, hex); isRGB = true; color()});
+hex.addEventListener("click", () => {
+    if (isRGB) {
+        scoreReset();
+        on(hex, rgb);
+        color()
+        isRGB = false;
+    }
+});
+rgb.addEventListener("click", () => {
+    if (!isRGB) {
+        scoreReset();
+        on(rgb, hex); 
+        color()
+        isRGB = true;
+    }
+});
+
+function scoreReset() {
+    correct = 0;
+    incorrect = 0;
+}
 
 function randInt(max) {
     return Math.floor(Math.random() * max) + 1;
