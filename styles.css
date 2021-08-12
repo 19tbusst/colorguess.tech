@@ -1,10 +1,20 @@
+:root {
+    --bg-color: #112226;
+    --dark-color: #0C3B40;
+    --header-color: #2b777e;
+    --dark-red: #73363B;
+    --red: #F25E6B;
+    --lime: #A9BF5A;
+    
+}
+
 * {
     margin: 0;
 }
 
 header {
-    background-color: #0C3B40;
-    color: #2b777e;
+    background-color: var(--dark-color);
+    color: var(--header-color);
     display: flex;
     height: 50px;
 }
@@ -38,6 +48,9 @@ header h2 {
     position: absolute;
 }
 
+#github {
+    margin-right: 5px;
+}
 
 .options {
     height: 50px;
@@ -47,9 +60,9 @@ header h2 {
 }
 
 .options button  {
-    background-color: #112226;
+    background-color: var(--bg-color);
     display: inline-block;
-    color: #2b777e;
+    color: var(--header-color);
     font-family: sans-serif;
     font-size: 25px;
     padding: 11px 10px;
@@ -67,25 +80,25 @@ header h2 {
 }
 
 #rgb {
-    background-color: #0C3B40;
+    background-color: var(--dark-color);
 }
 
 #easy {
-    background-color: #0C3B40;
+    background-color: var(--dark-color);
 }
 
 body {
-    background-color: #112226;
+    background-color: var(--bg-color);
 }
 
 #guess {
-    background-color: #73363B;
+    background-color: var(--dark-red);
     height: 100px;
     padding-top: 15px;
 }
 
 #guess h2 {
-    color:#F25E6B;
+    color: var(--red);
     font-family: sans-serif;
     font-size: 70px;
     text-align: center;
@@ -102,7 +115,7 @@ body {
 }
 
 #panels button, #panels-hard button {
-    background-color: #A9BF5A;
+    background-color: var(--lime);
     width: 300px;
     height: 300px;
     margin: 0 15px;

@@ -40,18 +40,18 @@ hard.addEventListener("click", () => {
 });
 hex.addEventListener("click", () => {
     if (isRGB) {
+        isRGB = false;
         scoreReset();
         on(hex, rgb);
-        color()
-        isRGB = false;
+        color();
     }
 });
 rgb.addEventListener("click", () => {
     if (!isRGB) {
+        isRGB = true;
         scoreReset();
         on(rgb, hex); 
-        color()
-        isRGB = true;
+        color();  
     }
 });
 
