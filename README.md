@@ -7,5 +7,5 @@ https://colorguess.tech/
 - [ ] Correct option indicator
 - [ ] Timer
 - [ ] Leaderboard
-- [ ] Better question answer indicator
+- [X] Better question answer indicator
 - [ ] Fix github logo link
