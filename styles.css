@@ -1,10 +1,13 @@
 :root {
     --bg-color: #112226;
     --dark-color: #0C3B40;
+    --dark-color-tran: rgba(12, 59, 64, 0.5);
     --header-color: #2b777e;
+    --header-color-tran: rgba(43, 119, 126, 0.7);
     --dark-red: #73363B;
     --red: #F25E6B;
     --lime: #A9BF5A;
+    --dark-lime: #6d7a3d;
     
 }
 
@@ -92,13 +95,13 @@ body {
 }
 
 #guess {
-    background-color: var(--dark-red);
+    background-color: var(--dark-color-tran);
     height: 100px;
     padding-top: 15px;
 }
 
 #guess h2 {
-    color: var(--red);
+    color: var(--header-color-tran);
     font-family: sans-serif;
     font-size: 70px;
     text-align: center;
@@ -116,9 +119,17 @@ body {
 
 #panels button, #panels-hard button {
     background-color: var(--lime);
-    width: 300px;
-    height: 300px;
+    width: 250px;
+    height: 250px;
     margin: 0 15px;
     border: none;
     border-radius: 60px;
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    background-color: var(--dark-color);
 }

@@ -19,6 +19,8 @@ let randNum;
 let correct = 0;
 let incorrect = 0;
 
+let inTimeout = false;
+
 easy.addEventListener("click", () => {
     if (!isEasy) {
         scoreReset();
@@ -109,30 +111,41 @@ function color() {
     console.log(`The correct color is in slot ${randNum + 1}`);
 }   
 
+function timeout(questionStatus) {
+    if (inTimeout) return;
+    console.log(questionStatus);
+
+    setTimeout(() => {
+        inTimeout = false;
+        color();
+        correctGuess.style.backgroundColor = document.documentElement.style.getPropertyValue("--dark-red");
+        correctGuess.children[0].style.color = document.documentElement.style.getPropertyValue("--red"); 
+    }, 1500);
+    inTimeout = true;
+    correctGuess.children[0].innerText = questionStatus.toUpperCase();
+
+    switch (questionStatus) {
+        case "incorrect":
+            incorrect++;
+            correctGuess.children[0].innerText = "INCORRECT";
+            correctGuess.style.backgroundColor = "rgba(115, 54, 59, 0.5)";
+            correctGuess.children[0].style.color = "rgba(242, 94, 107, 0.7)";
+            break;
+
+        case "correct":
+            correct++;
+            correctGuess.children[0].innerText = "CORRECT";
+            correctGuess.style.backgroundColor = "rgba(109, 122, 61, 0.5)";
+            correctGuess.children[0].style.color = "rgba(169, 191, 90, 0.7)";
+            break;
+    }
+}
+
 function guess(panel) {
     if (panel == randNum) {
-        console.log("Correct!");
-        correct++;
-        setTimeout(() => {
-            color();
-            correctGuess.style.backgroundColor = document.documentElement.style.getPropertyValue("--dark-red");
-            correctGuess.children[0].style.color = document.documentElement.style.getPropertyValue("--red");
-        }, 1500);
-        correctGuess.children[0].innerText = "CORRECT";
-        correctGuess.style.backgroundColor = "#5eff5e";
-        correctGuess.children[0].style.color = "#2ef202";
-        co
+        timeout("correct");
     } else {
-        console.log("Incorrect");
-        incorrect++;
-        setTimeout(() => {
-            color();
-            correctGuess.style.backgroundColor = document.documentElement.style.getPropertyValue("--dark-red");
-            correctGuess.children[0].style.color = document.documentElement.style.getPropertyValue("--red");
-        }, 1500);
-        correctGuess.children[0].innerText = "INCORRECT";
-        correctGuess.style.backgroundColor = "#f20202";
-        correctGuess.children[0].style.color = "#ff5e5e";
+        timeout("incorrect")
     }
 }
 
