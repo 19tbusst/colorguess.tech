@@ -113,11 +113,26 @@ function guess(panel) {
     if (panel == randNum) {
         console.log("Correct!");
         correct++;
-        color();
+        setTimeout(() => {
+            color();
+            correctGuess.style.backgroundColor = document.documentElement.style.getPropertyValue("--dark-red");
+            correctGuess.children[0].style.color = document.documentElement.style.getPropertyValue("--red");
+        }, 1500);
+        correctGuess.children[0].innerText = "CORRECT";
+        correctGuess.style.backgroundColor = "#5eff5e";
+        correctGuess.children[0].style.color = "#2ef202";
+        co
     } else {
         console.log("Incorrect");
         incorrect++;
-        color();
+        setTimeout(() => {
+            color();
+            correctGuess.style.backgroundColor = document.documentElement.style.getPropertyValue("--dark-red");
+            correctGuess.children[0].style.color = document.documentElement.style.getPropertyValue("--red");
+        }, 1500);
+        correctGuess.children[0].innerText = "INCORRECT";
+        correctGuess.style.backgroundColor = "#f20202";
+        correctGuess.children[0].style.color = "#ff5e5e";
     }
 }
 
