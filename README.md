@@ -4,7 +4,7 @@ https://colorguess.tech/
 
 ## Todo
 - [X] Question timout
-- [ ] Correct option indicator
+- [X] Correct option indicator
 - [ ] Timer
 - [ ] Leaderboard
 - [X] Better question answer indicator

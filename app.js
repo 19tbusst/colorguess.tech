@@ -1,10 +1,8 @@
+// 
 var easy = document.getElementById("easy");
 var hard = document.getElementById("hard");
 var hex = document.getElementById("hex");
 var rgb = document.getElementById("rgb");
-
-correctCount = document.getElementById("correct");
-incorrectCount = document.getElementById("incorrect");
 
 var panels = document.getElementById("panels");
 var panelsHard = document.getElementById("panels-hard");
@@ -16,30 +14,40 @@ var isEasy = true;
 let colorChoice;
 let randNum;
 
+// Correct and incorrect count
+correctCount = document.getElementById("correct");
+incorrectCount = document.getElementById("incorrect");
+
 let correct = 0;
 let incorrect = 0;
 
+// Stops new question during timout.
 let inTimeout = false;
 
+// Switches mode to easy.
 easy.addEventListener("click", () => {
     if (!isEasy) {
         scoreReset();
+        color();
         on(easy, hard);
         panelsHard.style.display = "none";
-        color();
         isEasy = true;
     };
 });
+
+// Switches mode to hard.
 hard.addEventListener("click", () => {
     if (isEasy) {
         scoreReset();
-        on(hard, easy);
-        panelsHard.style.display = "flex";
         color();
+        on(hard, easy);
+        panelsHard.style.display = "flex";     
         isEasy = false;
     };
     
 });
+
+// Switches mode to RGB.
 hex.addEventListener("click", () => {
     if (isRGB) {
         isRGB = false;
@@ -48,6 +56,8 @@ hex.addEventListener("click", () => {
         color();
     }
 });
+
+// Switches mode to hexadecimal.
 rgb.addEventListener("click", () => {
     if (!isRGB) {
         isRGB = true;
@@ -57,35 +67,52 @@ rgb.addEventListener("click", () => {
     }
 });
 
+// Resets score, used when mode or difficulty is switched.
 function scoreReset() {
     correct = 0;
     incorrect = 0;
 }
 
+// Generates a random integer.
 function randInt(max) {
     return Math.floor(Math.random() * max) + 1;
 }
 
+// Shows the selected option.
 function on(on, off) {
     on.style.backgroundColor = "#0C3B40";
     off.style.backgroundColor = "#112226";
 }
 
+// Is called when a panel is clicked, checks is answered correctly.
+function guess(panel) {
+    if (panel == randNum) {
+        timeout("correct", panel);
+    } else {
+        timeout("incorrect", panel)
+    }
+}
+
+// Generates a random color.
 function randomColor() {
     if (isRGB) {
+        // Random RGB color.
         colorChoice = `RGB(${randInt(255)}, ${randInt(255)}, ${randInt(255)})`;
         return colorChoice;
     } else {
+        // Random hexadecimal color.
         let n = (Math.random() * 0xfffff * 1000000).toString(16);
         colorChoice = '#' + n.slice(0, 6);
         return colorChoice;
     }
 }
 
+// Sets the color of each panel.
 function color() {
     correctCount.innerText = `correct ${correct}`
     incorrectCount.innerText = `incorrect ${incorrect}`
 
+    // Assigns a random color to each panel.
     for (let i = 0; i < 3; i++) {   
         panels.children[i].style.backgroundColor = randomColor();
         panelsHard.children[i].style.backgroundColor = randomColor();
@@ -98,6 +125,7 @@ function color() {
         panelsNum = 6;
     }
 
+    // Assigns a correct color to a panel.
     let correctColor = randomColor();
     correctGuess.children[0].innerText = correctColor;
 
@@ -111,42 +139,94 @@ function color() {
     console.log(`The correct color is in slot ${randNum + 1}`);
 }   
 
-function timeout(questionStatus) {
-    if (inTimeout) return;
-    console.log(questionStatus);
+// Handels correct and incorrect notifications.
+function timeout(questionStatus, panelChosen) {
+    let correctBorder = randNum;
 
+    // Stops code if in a timeout.
+    if (inTimeout) return;
+
+    // Shows the border of the chosen and correct panel.
+    if (panelChosen < 3) {
+        panels.children[panelChosen].style.borderWidth = "5px";
+    } else {
+        panelsHard.children[panelChosen - 3].style.borderWidth = "5px";
+    }
+
+    if (randNum < 3) {
+        panels.children[randNum].style.borderWidth = "5px"; 
+    } else {
+        panelsHard.children[randNum - 3].style.borderWidth = "5px"; 
+    }
+    
+    // Sets a timeout inbetween question to notify correct and incorrect options.
     setTimeout(() => {
         inTimeout = false;
         color();
+
+        // Resets banner color.
         correctGuess.style.backgroundColor = document.documentElement.style.getPropertyValue("--dark-red");
-        correctGuess.children[0].style.color = document.documentElement.style.getPropertyValue("--red"); 
+        correctGuess.children[0].style.color = document.documentElement.style.getPropertyValue("--red");
+
+        // Hides the border after the timeout.
+        if (panelChosen < 3) {
+            panels.children[panelChosen].style.borderWidth = "0px";
+        } else {
+            panelsHard.children[panelChosen - 3].style.borderWidth = "0px";
+        }
+
+        if (correctBorder < 3) {
+            panels.children[correctBorder].style.borderWidth = "0px";
+        } else {
+            panelsHard.children[correctBorder - 3].style.borderWidth = "0px";
+        }
+            
     }, 1500);
     inTimeout = true;
     correctGuess.children[0].innerText = questionStatus.toUpperCase();
 
+    // Changes banner based on whether the question was correct.
     switch (questionStatus) {
         case "incorrect":
             incorrect++;
+
+            // Changes banner color and text to incorrect.
             correctGuess.children[0].innerText = "INCORRECT";
             correctGuess.style.backgroundColor = "rgba(115, 54, 59, 0.5)";
             correctGuess.children[0].style.color = "rgba(242, 94, 107, 0.7)";
+
+            // Shows chosen option.
+            if (panelChosen < 3) {
+                panels.children[panelChosen].style.borderColor = "#F25E6B";
+            } else {
+                panelsHard.children[panelChosen - 3].style.borderColor = "#F25E6B";
+            }
+
+            // Shows correct option.
+            if (randNum < 3) {
+                panels.children[randNum].style.borderColor = "#A9BF5A";
+            } else {
+                panelsHard.children[randNum - 3].style.borderColor = "#A9BF5A";
+            }
             break;
 
         case "correct":
             correct++;
+
+            // Changes banner color and text to correct.
             correctGuess.children[0].innerText = "CORRECT";
             correctGuess.style.backgroundColor = "rgba(109, 122, 61, 0.5)";
             correctGuess.children[0].style.color = "rgba(169, 191, 90, 0.7)";
+
+            // Shows correct option.
+            if (panelChosen < 3) {
+                panels.children[panelChosen].style.borderColor = "#A9BF5A";
+            } else {
+                panelsHard.children[panelChosen - 3].style.borderColor = "#A9BF5A";
+            }
             break;
     }
 }
 
-function guess(panel) {
-    if (panel == randNum) {
-        timeout("correct");
-    } else {
-        timeout("incorrect")
-    }
-}
-
+// Starts program.
 color();
