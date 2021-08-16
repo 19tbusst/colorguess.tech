@@ -9,3 +9,4 @@ https://colorguess.tech/
 - [ ] Leaderboard
 - [X] Better question answer indicator
 - [ ] Fix github logo link
+= [ ] Make mobile compatable 
