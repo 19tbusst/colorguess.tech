@@ -8,5 +8,9 @@ https://colorguess.tech/
 - [ ] Timer
 - [ ] Leaderboard
 - [X] Better question answer indicator
+<<<<<<< Updated upstream
 - [ ] Fix github logo link
 - [ ] Make mobile compatable 
+=======
+- [X] Fix github logo link
+>>>>>>> Stashed changes

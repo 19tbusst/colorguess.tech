@@ -31,6 +31,9 @@ header img {
     margin-top: 5px;
     height: 40px;
     float: right;
+    position: absolute;
+    top: 0px;
+    right: 5px;
 }
 
 header h1 {
@@ -137,4 +140,40 @@ footer {
     height: 50px;
     width: 100%;
     background-color: var(--dark-color);
+}
+
+@media only screen and (max-width: 1100px) {
+    #score {
+        position: static;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    header {
+        height: 100px;
+        display: block;
+        margin-top: 0;
+    }
+
+    header h1 {
+        padding-top: 11px;
+        margin-top: 0;
+        text-align: center;
+    } 
+
+    #panels button, #panels-hard button {
+        width: 27vw;
+        height: 27vw;
+        border-radius: 7vw;
+    }
+}
+
+@media only screen and (max-width: 635px) {
+    #guess h2 {
+        font-size: 10vw;
+    }
+
+    #guess {
+        height: 14vw;
+    }
 }
