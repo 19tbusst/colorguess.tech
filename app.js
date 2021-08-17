@@ -22,6 +22,9 @@ let score = 0;
 // Stops new question during timout.
 let inTimeout = false;
 
+// Stops highscore reading "null"
+if (localStorage.getItem("highScore") == null) localStorage.setItem("highScore", 0);
+
 // Switches mode to easy.
 easy.addEventListener("click", () => {
     if (!isEasy) {
@@ -65,7 +68,7 @@ rgb.addEventListener("click", () => {
     }
 });
 
-// Resets score, used when mode or difficulty is switched.
+// Resets score and sets highscore, used when mode or difficulty is switched.
 function scoreReset() {
     if (score > localStorage.getItem('highScore')) localStorage.setItem('highScore', score);
     score = 0;

@@ -177,3 +177,15 @@ footer {
         height: 14vw;
     }
 }
+
+@media only screen and (max-width: 425px) {
+    header img {
+        display: none;
+    }
+
+    #panels button, #panels-hard button {
+        width: 24vw;
+        height: 24vw;
+        border-radius: 7vw;
+    }
+}
