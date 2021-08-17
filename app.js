@@ -1,4 +1,3 @@
-// 
 var easy = document.getElementById("easy");
 var hard = document.getElementById("hard");
 var hex = document.getElementById("hex");
@@ -15,11 +14,10 @@ let colorChoice;
 let randNum;
 
 // Correct and incorrect count
-correctCount = document.getElementById("correct");
-incorrectCount = document.getElementById("incorrect");
+highscoreCount = document.getElementById("highscore");
+scoreCount = document.getElementById("score");
 
-let correct = 0;
-let incorrect = 0;
+let score = 0;
 
 // Stops new question during timout.
 let inTimeout = false;
@@ -69,14 +67,14 @@ rgb.addEventListener("click", () => {
 
 // Resets score, used when mode or difficulty is switched.
 function scoreReset() {
-    correct = 0;
-    incorrect = 0;
+    if (score > localStorage.getItem('highScore')) localStorage.setItem('highScore', score);
+    score = 0;
 }
 
 // Generates a random integer.
 function randInt(max) {
     return Math.floor(Math.random() * max) + 1;
-}
+}   
 
 // Shows the selected option.
 function on(on, off) {
@@ -100,7 +98,7 @@ function randomColor() {
         colorChoice = `RGB(${randInt(255)}, ${randInt(255)}, ${randInt(255)})`;
         return colorChoice;
     } else {
-        // Random hexadecimal color.
+        // Random hexadecimal color. (code from https://www.w3resource.com/)
         let n = (Math.random() * 0xfffff * 1000000).toString(16);
         colorChoice = '#' + n.slice(0, 6);
         return colorChoice;
@@ -109,8 +107,8 @@ function randomColor() {
 
 // Sets the color of each panel.
 function color() {
-    correctCount.innerText = `correct ${correct}`
-    incorrectCount.innerText = `incorrect ${incorrect}`
+    highscoreCount.innerText = `Highscore ${localStorage.getItem('highScore')}`;
+    scoreCount.innerText = `Score ${score}`;
 
     // Assigns a random color to each panel.
     for (let i = 0; i < 3; i++) {   
@@ -148,15 +146,15 @@ function timeout(questionStatus, panelChosen) {
 
     // Shows the border of the chosen and correct panel.
     if (panelChosen < 3) {
-        panels.children[panelChosen].style.borderWidth = "5px";
+        panels.children[panelChosen].style.borderWidth = "7px";
     } else {
-        panelsHard.children[panelChosen - 3].style.borderWidth = "5px";
+        panelsHard.children[panelChosen - 3].style.borderWidth = "7px";
     }
 
     if (randNum < 3) {
-        panels.children[randNum].style.borderWidth = "5px"; 
+        panels.children[randNum].style.borderWidth = "7px"; 
     } else {
-        panelsHard.children[randNum - 3].style.borderWidth = "5px"; 
+        panelsHard.children[randNum - 3].style.borderWidth = "7px"; 
     }
     
     // Sets a timeout inbetween question to notify correct and incorrect options.
@@ -188,7 +186,7 @@ function timeout(questionStatus, panelChosen) {
     // Changes banner based on whether the question was correct.
     switch (questionStatus) {
         case "incorrect":
-            incorrect++;
+            scoreReset();
 
             // Changes banner color and text to incorrect.
             correctGuess.children[0].innerText = "INCORRECT";
@@ -211,7 +209,7 @@ function timeout(questionStatus, panelChosen) {
             break;
 
         case "correct":
-            correct++;
+            score++;
 
             // Changes banner color and text to correct.
             correctGuess.children[0].innerText = "CORRECT";

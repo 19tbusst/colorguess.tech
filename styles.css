@@ -49,7 +49,7 @@ header h2 {
     margin: 12px 5% 0;
 }
 
-#score {
+#scores {
     display: flex;
     justify-content: center;
     position: absolute;
